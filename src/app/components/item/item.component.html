@@ -1,0 +1,22 @@
+<ion-item>
+  <ion-thumbnail slot="start">
+    <img [src]="item?.cover ? item.cover : 'assets/img/roesti.img'"/>
+  </ion-thumbnail>
+  <ion-label>
+    <h4>{{item?.name}}</h4>
+    <p class="ion-text-wrap">{{item?.description}}</p>
+    <ion-text>
+      <p>CHF {{item?.price | number:'0.2-2'}}</p>
+    </ion-text>
+  </ion-label>
+  <ion-row *ngIf="!item?.quantity || item?.quantity <= 0" (click)="quantityPlus()">
+    <ion-text style="color: var(--ion-color-primary);" class="add">Add</ion-text>
+  </ion-row>
+  <ion-row *ngIf="item?.quantity > 0">
+    <ion-icon style="color: var(--ion-color-danger);" name="remove-circle-outline"
+              (click)="quantityMinus()"></ion-icon>
+    <ion-text class="ion-text-center quantity">{{item.quantity}}</ion-text>
+    <ion-icon style="color: var(--ion-color-primary);" name="add-circle-outline"
+              (click)="quantityPlus()"></ion-icon>
+  </ion-row>
+</ion-item>

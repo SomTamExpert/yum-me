@@ -1,0 +1,7 @@
+{
+  "name": "yum-me",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,11 @@
+.maps {
+  position: absolute;
+  height: 30vh;
+  width: 100%;
+  background-color: transparent ;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+}
+.maps.visible {
+  opacity: 1;
+}

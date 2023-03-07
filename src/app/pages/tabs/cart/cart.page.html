@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="tertiary">Cart</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="getPreviousUrl()" *ngIf="urlCheck && urlCheck !== 'tabs'"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <app-empty-screen *ngIf="!model?.restaurant"></app-empty-screen>
+  <ng-container *ngIf="model?.restaurant">
+    <ion-list lines="none" class="borderBottomSmall">
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-img [src]="model.restaurant.cover ? model.restaurant.cover : 'assets/imgs/cheese.jpg'"></ion-img>
+        </ion-thumbnail>
+        <ion-label>
+          <ion-text><h4>{{model.restaurant.name}}</h4></ion-text>
+          <ion-note> {{model.restaurant.address?.address}}</ion-note>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <app-cart-item
+        *ngFor="let item of model?.items; let i = index"
+        [item]="item"
+        [index]="i"
+        (add)="quantityPlus($event)"
+        (minus)="quantityMinus($event)"
+      >
+      </app-cart-item>
+    </ion-list>
+    <ion-item lines="none" class="borderBottom">
+      <ion-icon slot="start" name="list-outline"></ion-icon>
+      <ion-input type="text" placeholder="Any instructions? We will give our best"
+                 [(ngModel)]="instruction"></ion-input>
+    </ion-item>
+    <ion-list>
+      <ion-list-header>
+        <ion-label color="tertiary">Billing Details</ion-label>
+      </ion-list-header>
+      <ion-item lines="none">
+        <ion-label>Item Total</ion-label>
+        <ion-text slot="end" color="dark">
+          <h6>{{model.totalPrice | currency:'CHF ':true}}</h6>
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Delivery Fee</ion-label>
+        <ion-text slot="end" color="dark">
+          <h6>{{model.deliverCharge | currency:'CHF ':true}}</h6>
+        </ion-text>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>To Pay</ion-label>
+        <ion-text slot="end" color="dark">
+          <h5>{{model.grandTotal | currency:'CHF ':true}}</h5>
+        </ion-text>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+</ion-content>
+<ion-footer *ngIf="model?.restaurant">
+  <ion-toolbar>
+    <ion-item *ngIf="location.lat" lines="none">
+      <ion-button slot="end" size="small" fill="clear" (click)="changeAddress()" color="tertiary">CHANGE ADDRESS
+      </ion-button>
+      <ion-icon slot="start" name="home-outline"></ion-icon>
+      <ion-label>
+        <h5>DELIVER to HOME</h5>
+        <ion-text color="medium"><p class="ion-text-wrap">Escherwyssplatz, Zurich</p></ion-text>
+      </ion-label>
+    </ion-item>
+    <ion-row *ngIf="location.lat">
+      <ion-col size="6" (click)="scrollToBottom">
+        <ion-item lines="none" class="ion-no-padding">
+          <ion-label>
+            <h6>{{model.grandTotal | currency:'CHF ':true}}</h6>
+            <ion-text color="secondary">VIEW DETAILED BILL
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            </ion-text>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6" class="ion-text-center" (click)="makePayment()">
+        <ion-button color="success" expand="block">MAKE PAYMENT</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="!location.lat">
+      <ion-col size="6">
+        <ion-button color="success" expand="block" fill="outline" (click)="addAddress()">ADD ADDRESS</ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button color="success" expand="block" (click)="changeAddress()">CHANGE ADDRESS</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

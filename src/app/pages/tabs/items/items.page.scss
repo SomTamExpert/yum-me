@@ -1,0 +1,48 @@
+.veg {
+  align-items: center;
+}
+
+ion-toggle {
+  margin-left: 3vw;
+  height: 0.75vh;
+  width: 12vw;
+
+  --handle-width: 2vh;
+  --handle-height: 2vh;
+  --handle-max-height: auto;
+  --handle-spacing: 1vw;
+  overflow: visible;
+  contain: none;
+}
+
+ion-toggle::part(track),
+ion-toggle.toggle-checked::part(track) {
+  background: #ddd;
+}
+
+ion-toggle::part(handle) {
+  background: var(--ion-color-danger);
+
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+ion-toggle.toggle-checked::part(handle) {
+  background: var(--ion-color-primary);
+}
+
+ion-list-header {
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+ion-footer {
+  h4, p {
+    margin-left: 1rem;
+  }
+  p {
+    font-size: 0.55rem !important;
+    letter-spacing: 0.5px;
+  }
+}
