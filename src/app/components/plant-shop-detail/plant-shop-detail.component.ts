@@ -2,10 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-restaurant-detail',
-  templateUrl: './restaurant-detail.component.html',
-  styleUrls: ['./restaurant-detail.component.scss'],
+  templateUrl: './plant-shop-detail.component.html',
+  styleUrls: ['./plant-shop-detail.component.scss'],
 })
-export class RestaurantDetailComponent implements OnInit {
+export class PlantShopDetailComponent implements OnInit {
 
   @Input() data: any
   @Input() isLoading: boolean = false;

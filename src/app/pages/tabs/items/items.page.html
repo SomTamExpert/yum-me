@@ -13,12 +13,12 @@
   <app-restaurant-detail [data]="data" [isLoading]="isLoading"></app-restaurant-detail>
   <ion-row class="ion-padding veg borderBottomSmall">
     <ion-label>
-      <h4>Vegetarian Only</h4>
+      <h4>With Pot Only</h4>
     </ion-label>
     <ion-toggle
       color="success"
-      (ionChange)="vegOnly($event)"
-      [(ngModel)]="veg"
+      (ionChange)="witPotOnly($event)"
+      [(ngModel)]="withPot"
     >
     </ion-toggle>
   </ion-row>

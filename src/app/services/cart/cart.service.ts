@@ -5,7 +5,7 @@ import {GlobalService} from '../global/global.service';
 import {StorageService} from '../storage/storage.service';
 import {Cart} from "../../models/cart.model";
 import {Item} from "../../models/item.model";
-import {Restaurant} from "../../models/restaurant.model";
+import {PlantShop} from "../../models/plant-shop.model";
 import {Order} from "../../models/order.model";
 
 @Injectable({
@@ -65,7 +65,7 @@ export class CartService {
 
   async orderToCart(order: Order) {
     const data = {
-      restaurant: order.restaurant,
+      restaurant: order.plantShop,
       items: order.order
     };
     // @ts-ignore
@@ -73,16 +73,16 @@ export class CartService {
     await this.calculate();
     this.saveCart();
     this._cart.next(this.model);
-    this.router.navigate(['/', 'tabs', 'restaurants', order.restaurant_id]);
+    this.router.navigate(['/', 'tabs', 'plantShops', order.plantShop_id]);
   }
 
-  async quantityPlus(index: any, items?: Item[], restaurant?: Restaurant) {
+  async quantityPlus(index: any, items?: Item[], plantShop?: PlantShop) {
     try {
       if (items) {
         this.model.items = [...items];
       }
-      if (restaurant) {
-        this.model.restaurant = restaurant;
+      if (plantShop) {
+        this.model.plantShop = plantShop;
       }
       if (!this.model.items[index].quantity || this.model.items[index].quantity == 0) {
         this.model.items[index].quantity = 1;

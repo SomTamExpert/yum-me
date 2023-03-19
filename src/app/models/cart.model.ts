@@ -1,10 +1,10 @@
-import {Restaurant} from "./restaurant.model";
+import {PlantShop} from "./plant-shop.model";
 import {Item} from "./item.model";
 import {Address} from "./address.model";
 
 export class Cart {
   constructor(
-    public restaurant: Restaurant,
+    public plantShop: PlantShop,
     public items: Item[],
     public totalItems: number,
     public totalPrice: number,

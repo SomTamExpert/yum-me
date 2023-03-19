@@ -5,7 +5,7 @@ import {Subscription} from 'rxjs';
 import {ApiService} from 'src/app/services/api/api.service';
 import {CartService} from 'src/app/services/cart/cart.service';
 import {take} from 'rxjs/operators';
-import {Restaurant} from "../../../models/restaurant.model";
+import {PlantShop} from "../../../models/plant-shop.model";
 import {Category} from "../../../models/category.model";
 import {Item} from "../../../models/item.model";
 
@@ -17,9 +17,9 @@ import {Item} from "../../../models/item.model";
 export class ItemsPage implements OnInit, OnDestroy {
 
   id: any;
-  data = {} as Restaurant;
+  data = {} as PlantShop;
   items: Item[] = [];
-  veg: boolean = false;
+  withPot: boolean = false;
   isLoading: boolean = false;
   cartData: any = {};
   storeData: any = {};
@@ -47,7 +47,7 @@ export class ItemsPage implements OnInit, OnDestroy {
     });
     this.cartSub = this.cartService.cart.subscribe(cart => { this.cartData = {}; this.storeData = {};
       if (cart && cart?.totalItems > 0) { this.storeData = cart; this.cartData.totalItems = this.storeData.totalItems; this.cartData.totalPrice = this.storeData.totalPrice;
-        if (cart?.restaurant?.uid === this.id) {
+        if (cart?.plantShop?.uid === this.id) {
           // @ts-ignore
           this.allItems.forEach(element => { cart.items.forEach((element2: { id: any; quantity: any; }) => {
               if (element.id != element2.id) return; element.quantity = element2.quantity;
@@ -55,9 +55,9 @@ export class ItemsPage implements OnInit, OnDestroy {
           });
           // @ts-ignore
           this.cartData.items = this.allItems.filter(x => x.quantity > 0);
-          if (this.veg) this.items = this.allItems.filter(x => x.veg);
+          if (this.withPot) this.items = this.allItems.filter(x => x.withPot);
           else this.items = [...this.allItems]; } else { this.allItems.forEach(element => { element.quantity = 0; });
-          if (this.veg) this.items = this.allItems.filter(x => x.veg);
+          if (this.withPot) this.items = this.allItems.filter(x => x.withPot);
           else this.items = [...this.allItems];
         }
       }
@@ -68,12 +68,12 @@ export class ItemsPage implements OnInit, OnDestroy {
   async getItems() {
     try {
       this.isLoading = true;
-      this.data = {} as Restaurant;
+      this.data = {} as PlantShop;
       this.cartData = {};
       this.storeData = {};
       setTimeout(async () => {
         this.allItems = this.api.allItems;
-        let data: any = this.api.restaurants1.filter(x => x.uid === this.id);
+        let data: any = this.api.plantShops1.filter(x => x.uid === this.id);
         this.data = data[0];
         this.categories = this.api.categories.filter(x => x.uid === this.id);
         this.allItems = this.api.allItems.filter(x => x.uid === this.id);
@@ -89,10 +89,10 @@ export class ItemsPage implements OnInit, OnDestroy {
     }
   }
 
-  vegOnly(event: any) {
+  witPotOnly(event: any) {
     console.log(event.detail.checked);
     this.items = [];
-    if (event.detail.checked == true) this.items = this.allItems.filter(x => x.veg === true);
+    if (event.detail.checked == true) this.items = this.allItems.filter(x => x.withPot === true);
     else this.items = this.allItems;
     console.log('items: ', this.items);
   }

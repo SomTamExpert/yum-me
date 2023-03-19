@@ -7,16 +7,16 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <app-empty-screen *ngIf="!model?.restaurant"></app-empty-screen>
-  <ng-container *ngIf="model?.restaurant">
+  <app-empty-screen *ngIf="!model?.plantShop"></app-empty-screen>
+  <ng-container *ngIf="model?.plantShop">
     <ion-list lines="none" class="borderBottomSmall">
       <ion-item>
         <ion-thumbnail slot="start">
-          <ion-img [src]="model.restaurant.cover ? model.restaurant.cover : 'assets/imgs/cheese.jpg'"></ion-img>
+          <ion-img [src]="model.plantShop.cover ? model.plantShop.cover : 'assets/imgs/cheese.jpg'"></ion-img>
         </ion-thumbnail>
         <ion-label>
-          <ion-text><h4>{{model.restaurant.name}}</h4></ion-text>
-          <ion-note> {{model.restaurant.address?.address}}</ion-note>
+          <ion-text><h4>{{model.plantShop.name}}</h4></ion-text>
+          <ion-note> {{model.plantShop.address?.address}}</ion-note>
         </ion-label>
       </ion-item>
     </ion-list>
@@ -60,7 +60,7 @@
     </ion-list>
   </ng-container>
 </ion-content>
-<ion-footer *ngIf="model?.restaurant">
+<ion-footer *ngIf="model?.plantShop">
   <ion-toolbar>
     <ion-item *ngIf="location.lat" lines="none">
       <ion-button slot="end" size="small" fill="clear" (click)="changeAddress()" color="tertiary">CHANGE ADDRESS

@@ -10,8 +10,10 @@ export class Item {
     public status: boolean,
     public uid: string,
     public variation: boolean,
-    public veg: boolean,
-    public quantity?: number
+    public withPot: boolean,
+    public quantity?: number,
+    public height?: number,
+    public potRadius?: number,
   ) {
   }
 

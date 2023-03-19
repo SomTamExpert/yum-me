@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../../../services/api/api.service";
-import {Restaurant} from "../../../models/restaurant.model";
+import {PlantShop} from "../../../models/plant-shop.model";
 
 
 @Component({
@@ -14,12 +14,12 @@ export class HomePage implements OnInit {
   }
 
   banners: any[] = [];
-  restaurants: Restaurant[] = [];
+  restaurants: PlantShop[] = [];
   isLoading: boolean = false;
 
   ngOnInit() {
     this.isLoading = true;
-    this.restaurants = this.api.restaurants;
+    this.restaurants = this.api.plantShops;
     this.banners = this.api.banners;
     setTimeout(() => {
       this.isLoading = false;

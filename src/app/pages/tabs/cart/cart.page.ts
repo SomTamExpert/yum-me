@@ -83,7 +83,7 @@ export class CartPage implements OnInit {
   async makePayment() {
     try {
       //@ts-ignore
-      const data: Order = {restaurant_id: this.model.restaurant.uid, instruction : this.instruction? this.instruction : '', restaurant: this.model.restaurant, order: this.model.items, time: moment().format('lll'), address: this.location, total: this.model.totalPrice, grandTotal: this.model.grandTotal, deliveryCharge: this.model.deliverCharge, status: 'created', paid: 'COD' };
+      const data: Order = {plantShop_id: this.model.plantShop.uid, instruction : this.instruction? this.instruction : '', plantShop: this.model.plantShop, order: this.model.items, time: moment().format('lll'), address: this.location, total: this.model.totalPrice, grandTotal: this.model.grandTotal, deliveryCharge: this.model.deliverCharge, status: 'created', paid: 'COD' };
       await this.orderService.placeOrder(data);
       await this.cartService.clearCart();
       this.model = {} as Cart;

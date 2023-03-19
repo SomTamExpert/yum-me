@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonInput} from "@ionic/angular";
 import {ApiService} from "../../../services/api/api.service";
-import {Restaurant} from "../../../models/restaurant.model";
+import {PlantShop} from "../../../models/plant-shop.model";
 
 @Component({
   selector: 'app-search',
@@ -19,15 +19,15 @@ export class SearchPage implements OnInit {
   }
   query: any;
   isLoading: boolean = false;
-  allRestaurants: Restaurant[] = [];
+  allRestaurants: PlantShop[] = [];
 
-  restaurants: Restaurant[] = [];
+  restaurants: PlantShop[] = [];
   constructor(private api: ApiService) {
   }
 
   ngOnInit() {
     setTimeout(() => {
-      this.allRestaurants = this.api.restaurants;
+      this.allRestaurants = this.api.plantShops;
       this.searchInput.setFocus()
     }, 500);
   }

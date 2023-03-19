@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RestaurantComponent} from "./restaurant/restaurant.component";
+import {PlantShopComponent} from "./plant-shop/plant-shop.component";
 import {IonicModule} from "@ionic/angular";
 import {LoadingRestaurantComponent} from "./loading-restaurant/loading-restaurant.component";
 import {EmptyScreenComponent} from "./empty-screen/empty-screen.component";
 
 @NgModule({
   declarations: [
-    RestaurantComponent,
+    PlantShopComponent,
     LoadingRestaurantComponent,
     EmptyScreenComponent
   ],
@@ -16,7 +16,7 @@ import {EmptyScreenComponent} from "./empty-screen/empty-screen.component";
     IonicModule
   ],
   exports: [
-    RestaurantComponent,
+    PlantShopComponent,
     LoadingRestaurantComponent,
     EmptyScreenComponent
   ],
